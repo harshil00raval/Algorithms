@@ -1,23 +1,23 @@
-
-import java.lang.Math;
+import java.lang.Math; 
 
 public class HelloWorld
 {
-  // arguments are passed using the text field below this editor
+
   public static void main(String[] args)
   {
     OtherClass a = new OtherClass("Hello World!");
     //System.out.print(myObject);
     int A[][] = {{0,0,0,1,1},{0,1,1,1,1},{0,0,1,1,1},{0,0,0,1,1},{0,0,0,0,1},{0,0,0,0,0}};
+    //int A[][] = {{0,0,0,0,0},{0,0,0,0,0},{0,0,0,0,0},{0,0,0,0,0},{0,0,0,0,0},{0,0,0,0,0}};
+    //int A[][] = {{0,0,0,1},{0,0,1,1},{0,1,1,1},{1,1,1,1}};
     int r[] = a.findRow(A);
-    //System.out.println("position: "+r[0]);
     System.out.println("row: "+r[1]);
-    System.out.println("No of 1s: "+(A[0].length-r[0]));
+    System.out.println("No of 1s: "+(r[0]>=0?(A[0].length-r[0]):-1));
   }
 }
 
 // you can add other public classes to this editor in any order
-public class OtherClass
+class OtherClass
 {
   private String message;
   private boolean answer = false;
@@ -35,20 +35,28 @@ public class OtherClass
       	return i;
     return -1;
   }
-  public int position(int A[][], int r){
-  	for(int j=0;j<A[r].length;j++)
-      if(A[r][j] == 1)
-      	return j;
-    return -1;
+  public int position(int A[][], int r,int pos){
+  	//int p = pos;
+    int i = pos;
+    
+    while(i>=0 && A[r][i] == 1)
+    {
+    	//p=i;
+      	i--;
+    }
+    //System.out.println(r+" pos "+pos+" i "+(i+1));
+    return (i+1);
   }
+  //int A[][] = {{0,0,0,1,1},{0,1,1,1,1},{0,0,1,1,1},{0,0,0,1,1},{0,0,0,0,1},{0,0,0,0,0}};
   public int[] findRow(int A[][]){
     int res[] = {-1,-1};
     int r= first(A);
-    System.out.println(r);
+    //System.out.println(r);
     if(r == -1)
       return res;
-    int pos = position(A,r);
-    System.out.println(pos);
+    //System.out.print("harshil");
+    int pos = position(A,r,(A[r].length-1));
+    //System.out.println(pos);
   	res[0] = pos;
    	res[1] = r;
     if(pos == 0){
@@ -56,7 +64,7 @@ public class OtherClass
     }
     for(int i = r+1;i<A.length;i++){
       if(A[i][pos-1] ==1){
-      	pos = position(A,i);
+      	pos = position(A,i,pos-1);
         r = i;
         res[0] = pos;
         res[1] = r;
@@ -64,7 +72,7 @@ public class OtherClass
           return res;
       }
     }
-    System.out.println(r+" "+pos+" "+res[0]+" "+res[1]);
+    //System.out.println(r+" "+pos+" "+res[0]+" "+res[1]);
     return res;
   }
   
