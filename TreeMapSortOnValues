@@ -1,0 +1,104 @@
+import java.util.*;
+
+
+public class TreeMapSortOnValues {
+
+    public static void main(String args[]){
+
+        TreemapValueComparator cv = new TreemapValueComparator();
+
+        //Map<String, Integer> tm = new TreeMap<String, Integer>((Map<? extends String, ? extends Integer>) cv);
+        Map<String, Integer> tm = new TreeMap<String, Integer>(new RevSort());
+
+        tm.put("harshil",6);
+        tm.put("mansi",5);
+        tm.put("dhyey",4);
+        tm.put("mandakini",1);
+        tm.put("raval",2);
+        tm.put("harshad",3);
+
+        Map sortedMap = sortByValues(tm);
+
+        Set set = sortedMap.entrySet();
+
+        // Get an iterator
+        Iterator i = set.iterator();
+
+        // Display elements
+        while(i.hasNext()) {
+            Map.Entry me = (Map.Entry)i.next();
+            System.out.print(me.getKey() + ": ");
+            System.out.println(me.getValue());
+        }
+/*
+        Set<String> ks = tm.keySet();
+        for(String key:ks){
+            System.out.println(key+" ==> "+tm.get(key));
+
+        }
+*/
+        System.out.println("after treemap before hashmap");
+
+        Map<String, Integer> hm = new HashMap<>();
+        hm.put("harshil",6);
+        hm.put("mansi",5);
+        hm.put("dhyey",4);
+        hm.put("mandakini",1);
+        hm.put("raval",2);
+        hm.put("harshad",3);
+
+        Set<Map.Entry<String,Integer>> keys = hm.entrySet();
+        List<Map.Entry<String,Integer>> k = new ArrayList<>(keys);
+
+        Collections.sort(k, cv);
+
+        Map<String,Integer> sv = new LinkedHashMap<>();
+        for(Map.Entry<String,Integer> entry:k){
+            sv.put(entry.getKey(),entry.getValue());
+        }
+        for(Map.Entry<String, Integer> entry:k){
+            System.out.println(entry.getKey()+" ==== "+entry.getValue());
+        }
+
+
+    }
+
+    public static <K, V extends Comparable<V>> Map<K, V> sortByValues(Map<K, V> map) {
+        Comparator<K> valueComparator =
+                new Comparator<K>() {
+                    public int compare(K k1, K k2) {
+                        int compare =
+                                map.get(k1).compareTo(map.get(k2));
+                        if (compare == 0)
+                            return 1;
+                        else
+                            return compare;
+                    }
+                };
+
+        Map<K, V> sortedByValues =
+                new TreeMap<K, V>(valueComparator);
+        sortedByValues.putAll(map);
+        return sortedByValues;
+    }
+}
+
+class  RevSort implements Comparator<String>{
+
+    public int compare(String s1,String s2){
+        return s2.compareTo(s1);
+    }
+}
+
+class TreemapValueComparator implements Comparator<Map.Entry<String,Integer>> {
+
+
+    @Override
+    public int compare(Map.Entry<String, Integer> o1, Map.Entry<String, Integer> o2) {
+
+        Integer a1 = (Integer) ((Map.Entry)o1).getValue();
+        Integer a2 = (Integer) ((Map.Entry)o2).getValue();
+
+        return a1.compareTo(a2);
+    }
+}
