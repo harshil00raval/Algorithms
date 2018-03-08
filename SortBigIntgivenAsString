@@ -1,0 +1,53 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+class BigIntCompare implements Comparator<String>{
+
+    @Override
+    public int compare(String s1, String s2){
+        int n=s1.length();
+        int m=s2.length();
+        if(n==m)
+            return (s1.compareTo(s2));
+
+        return n-m;
+    }
+}
+
+public class SortBigIntgivenAsString {
+
+    static String[] bigSorting(String[] arr) {
+        // Complete this function
+        //String A[] = {"abc","bcd"};
+
+        //BigInteger numbers[] = new BigInteger[arr.length];
+        List<String> numbers = new ArrayList<>();
+        for(int i= 0 ;i <arr.length;i++){
+            numbers.add(new String(arr[i]));
+        }
+
+
+        Collections.sort(numbers,new BigIntCompare());
+        for(int i= 0 ;i <arr.length;i++){
+            arr[i] = numbers.get(i).toString();
+        }
+
+        return arr;
+    }
+
+    public static void main(String[] args) {
+
+        String[] arr = {"100","200","300","200","100"};
+
+        String[] result = bigSorting(arr);
+        for (int i = 0; i < result.length; i++) {
+            System.out.print(result[i] + (i != result.length - 1 ? "\n" : ""));
+        }
+        System.out.println("");
+
+    }
+}
+
