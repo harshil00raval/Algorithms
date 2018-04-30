@@ -23,6 +23,12 @@ http://highscalability.com/blog/2010/12/1/8-commonly-used-scalable-system-design
 https://www.programcreek.com/2013/03/leetcode-lru-cache-java/
 http://highscalability.com/blog/2015/11/9/a-360-degree-view-of-the-entire-netflix-stack.html
 
+Design Patterns:
+http://www.oodesign.com/single-responsibility-principle.html
+http://www.oodesign.com/builder-pattern.html
+https://en.m.wikipedia.org/wiki/Creational_pattern
+https://en.wikipedia.org/wiki/SOLID_(object-oriented_design)
+
 Java: 
 
 http://blog.jamesdbloom.com/JVMInternals.html
@@ -75,18 +81,12 @@ http://www.programcreek.com/2013/03/hashmap-vs-treemap-vs-hashtable-vs-linkedhas
 
 https://docs.oracle.com/cd/E13150_01/jrockit_jvm/jrockit/geninfo/diagnos/garbage_collect.html
 
-https://en.m.wikipedia.org/wiki/Creational_pattern
-
-https://en.wikipedia.org/wiki/SOLID_(object-oriented_design)
-
 https://lostechies.com/derickbailey/2009/02/11/solid-development-principles-in-motivational-pictures/
 
 https://scotch.io/bar-talk/s-o-l-i-d-the-first-five-principles-of-object-oriented-design
 
+https://www.protechtraining.com/content/java_fundamentals_tutorial-exceptions
 
-Design Patterns:
-http://www.oodesign.com/single-responsibility-principle.html
-http://www.oodesign.com/builder-pattern.html
 
 
 SQL:
